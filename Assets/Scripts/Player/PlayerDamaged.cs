@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDamaged : MonoBehaviour, IDamageable
 {
+    [SerializeField] protected Slider slider = null;
     private bool is_Damaged;
     private Shootable shootable;
 
@@ -22,9 +24,13 @@ public class PlayerDamaged : MonoBehaviour, IDamageable
         sprRend = GetComponent<SpriteRenderer>();
         damageWait = new WaitForSeconds(damageableDur);
         colorWait = new WaitForSeconds(0.1f);
-
+        slider.value = (float)GameManager.Instance.playerInfo.currentHp / (float)GameManager.Instance.playerInfo.maxHp;
         StartCoroutine(DamagedControl());
         StartCoroutine(OnDamaged());
+    }
+    void HandleHP()
+    {
+        slider.value = (float)GameManager.Instance.playerInfo.currentHp / (float)GameManager.Instance.playerInfo.maxHp;
     }
 
     IEnumerator DamagedControl()
@@ -55,10 +61,12 @@ public class PlayerDamaged : MonoBehaviour, IDamageable
 
     public void OnDamaged(float damage)
     {
+        
         if (is_Damaged) { return; }
         GameManager.Instance.playerInfo.currentHp -= damage;
         is_Damaged = true;
         print("플레이어 현재 체력 : " + GameManager.Instance.playerInfo.currentHp);
+        HandleHP();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
