@@ -159,7 +159,7 @@ public class AdamBoss : BossEnemy
         move = stateMoveCenter;
         dicState[BossEnemyState.MOVE] = move;
         stateMachine.SetState(dicState[BossEnemyState.MOVE]);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         while (true)
         {
