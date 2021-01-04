@@ -37,7 +37,7 @@ public class LazerTurret : Turret
 
     private StateSpawned stateSpawned;
     private StateLazerWarning stateLazerWarning;
-    private StateLazerAttack stateLazerAttack;
+    private StateRedLazerAttack stateLazerAttack;
     private StateDie stateDie;
 
     private void Awake()
@@ -50,7 +50,7 @@ public class LazerTurret : Turret
         stateLazerWarning.warnPos = attackPos;
         stateLazerWarning.warningDur = warningDur;
 
-        stateLazerAttack = gameObject.AddComponent<StateLazerAttack>();
+        stateLazerAttack = gameObject.AddComponent<StateRedLazerAttack>();
 
         stateLazerAttack.attackPos = attackPos;
         stateLazerAttack.lazerSize = lazerSize;

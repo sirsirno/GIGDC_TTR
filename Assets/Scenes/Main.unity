@@ -23488,6 +23488,9 @@ MonoBehaviour:
   lazer_Red: {fileID: 5659452766286019763, guid: 9cc10c61588aef44ca1e11d5b8377e9a,
     type: 3}
   lazer_Red_Length: 20
+  lazer_Yellow: {fileID: 5659452766286019763, guid: b30172a36cf70ae4ba7927ab2280df1d,
+    type: 3}
+  lazer_Yellow_Length: 20
   enemy_ObserverX_Mk1: {fileID: 2335711716564302853, guid: a2d2b9a5d45c66c4990c94cc9fe75500,
     type: 3}
   enemy_ObserverX_Mk1_Length: 10

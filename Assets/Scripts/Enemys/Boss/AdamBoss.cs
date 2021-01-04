@@ -91,7 +91,7 @@ public class AdamBoss : BossEnemy
         IState warning = stateLazerWarning;
 
         // 레이저 어택 추가
-        StateLazerAttack stateLazerAttack = gameObject.AddComponent<StateLazerAttack>();
+        StateRedLazerAttack stateLazerAttack = gameObject.AddComponent<StateRedLazerAttack>();
         stateLazerAttack.lazerSize = lazerSize;
         stateLazerAttack.lazerRotation = lazerRotation;
         stateLazerAttack.attackPos = attackPos;

@@ -23,7 +23,7 @@ public class ObserverY_Mk2_Right_NormalEnemy : NormalEnemy
     [SerializeField]
     private float warningDur;
 
-    private StateLazerAttack stateLazerAttack;
+    private StateRedLazerAttack stateLazerAttack;
     private StateLazerWarning stateLazerWarning;
 
     protected override void Awake()
@@ -49,7 +49,7 @@ public class ObserverY_Mk2_Right_NormalEnemy : NormalEnemy
         IState warning = stateLazerWarning;
 
         // 레이저 어택 추가
-        stateLazerAttack = gameObject.AddComponent<StateLazerAttack>();
+        stateLazerAttack = gameObject.AddComponent<StateRedLazerAttack>();
         stateLazerAttack.lazerSize = lazerSize;
         stateLazerAttack.lazerRotation = lazerRotation;
         stateLazerAttack.attackPos = attackPos;

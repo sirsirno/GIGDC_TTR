@@ -33,7 +33,8 @@ public class PoolManager : MonoBehaviour
 
     public enum LazerType
     {
-        RED
+        RED,
+        YELLOW
     }
 
     public enum EnemyType 
@@ -73,6 +74,13 @@ public class PoolManager : MonoBehaviour
     private Queue<GameObject> lazer_Red_Pool = new Queue<GameObject>();
     [SerializeField]
     private int lazer_Red_Length;
+
+    [Header("다란 레이저 풀 정보")]
+    [SerializeField]
+    private GameObject lazer_Yellow;
+    private Queue<GameObject> lazer_Yellow_Pool = new Queue<GameObject>();
+    [SerializeField]
+    private int lazer_Yellow_Length;
 
     // 적 정보
 
@@ -178,6 +186,13 @@ public class PoolManager : MonoBehaviour
             obj.SetActive(false);
         }
 
+        for (int i = 0; i < lazer_Yellow_Length; i++) // 레이저 다랑
+        {
+            GameObject obj = Instantiate(lazer_Yellow, transform);
+            lazer_Yellow_Pool.Enqueue(obj);
+            obj.SetActive(false);
+        }
+
         for (int i = 0; i < turret_Lazer_Length; i++) // 레이저 터렛
         {
             GameObject obj = Instantiate(turret_Lazer, transform);
@@ -235,6 +250,12 @@ public class PoolManager : MonoBehaviour
             case LazerType.RED:
                 obj.transform.parent = transform;
                 lazer_Red_Pool.Enqueue(obj);
+                obj.SetActive(false);
+                break;
+
+            case LazerType.YELLOW:
+                obj.transform.parent = transform;
+                lazer_Yellow_Pool.Enqueue(obj);
                 obj.SetActive(false);
                 break;
         }
@@ -311,6 +332,11 @@ public class PoolManager : MonoBehaviour
         {
             case LazerType.RED:
                 obj = lazer_Red_Pool.Dequeue();
+                obj.SetActive(true);
+                return obj;
+
+            case LazerType.YELLOW:
+                obj = lazer_Yellow_Pool.Dequeue();
                 obj.SetActive(true);
                 return obj;
         }
