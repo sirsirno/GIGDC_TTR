@@ -45,6 +45,10 @@ public class EventManager : MonoBehaviour
 
     public event Action OnInsertBullet;
 
+    //우앱
+    public delegate void HealEnemy(float heal);
+    public event HealEnemy OnHealEnemy;
+
     public void BattleStart()
     {
         if (OnBattleStart != null)
@@ -58,6 +62,14 @@ public class EventManager : MonoBehaviour
         if (OnBattleEnd != null)
         {
             OnBattleEnd.Invoke();
+        }
+    }
+
+    public void HealAllEnemy(float heal)
+    {
+        if (OnHealEnemy != null)
+        {
+            OnHealEnemy.Invoke(heal);
         }
     }
 

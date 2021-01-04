@@ -26,6 +26,20 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     private LayerMask playerAttack;
 
+    private void IncreaseHp(float heal)
+    {
+        if ((currHp + heal) <= MaxHp)
+        {
+            currHp += heal;
+        }
+        else
+        {
+            currHp = MaxHp;
+        }
+
+        print("적이 회복되었습니다");
+    }
+
     protected virtual void Awake()
     {
         sprRend = GetComponent<SpriteRenderer>();
@@ -36,6 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable
         currHp = MaxHp;
         is_Dead = false;
         GameManager.Instance.AllEnemyCount += 1;
+        EventManager.Instance.OnHealEnemy += IncreaseHp;
     }
 
     protected virtual void InsertQueue()
@@ -72,5 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
         is_Dead = false;
         if(GameManager.Instance != null)
             GameManager.Instance.AllEnemyCount -= 1;
+        if (EventManager.Instance != null)
+            EventManager.Instance.OnHealEnemy -= IncreaseHp;
     }
 }
