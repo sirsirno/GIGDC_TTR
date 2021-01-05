@@ -24866,7 +24866,7 @@ GameObject:
   - component: {fileID: 980368702}
   - component: {fileID: 980368701}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DataLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

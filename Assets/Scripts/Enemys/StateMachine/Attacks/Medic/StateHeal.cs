@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateHeal : MonoBehaviour, IState
 {
-    public float heal { get; set; }
+    public float heal { get; set; } = 5.0f;
 
     public void OperateEnter()
     {
