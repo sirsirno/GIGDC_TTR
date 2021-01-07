@@ -70,7 +70,6 @@ public class AdamBoss : BossEnemy
         // 중앙으로 오는 이동 추가
         stateMoveCenter = gameObject.AddComponent<StateMoveCenter>();
         stateMoveCenter.MovSpeed = 0.7f;
-        IState moveCenter = stateMoveCenter;
 
         // 페이스1 추가
         patternOne = gameObject.AddComponent<SkillAdamPatternOne>();
@@ -109,7 +108,7 @@ public class AdamBoss : BossEnemy
 
         stateMachine = gameObject.AddComponent<StateMachine>();
 
-        phaseTwo_Wait = new WaitForSeconds(8f - phaseTwo_MovSpeed + 1f);
+        phaseTwo_Wait = new WaitForSeconds(phaseTwo_MovSpeed * 3f);
     }
 
     protected override IEnumerator PhaseOne()
@@ -238,7 +237,8 @@ public class AdamBoss : BossEnemy
                     attackWait = new WaitForSeconds(0.7f);  // 자동으로 돌아감
                     stateRandomMove.movSpeed = 0.65f;
                     patternOne.MovSpeed = 0.65f;    // 터렛 움직임
-                    patternTwo.MovSpeed = 6f;       // 터렛 움직임
+                    patternTwo.MovSpeed = 1.8f;       // 터렛 움직임
+                    phaseTwo_Wait = new WaitForSeconds(1.8f * 3f);
                     foreach (LazerTurret turret in turrets)
                     {
                         turret.attackWait = new WaitForSeconds(0.7f);  // 자동으로 돌아감
@@ -306,7 +306,7 @@ public class AdamBoss : BossEnemy
         attackCount = 5;
         stateRandomMove.movSpeed = 0.7f;
         patternOne.MovSpeed = 0.7f;
-        patternTwo.MovSpeed = 5f;
+        patternTwo.MovSpeed = 2f;
         yield return null;
     }
 }

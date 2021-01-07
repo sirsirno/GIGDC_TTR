@@ -45,7 +45,7 @@ public class LazerTurret : Turret
         stateSpawned = gameObject.AddComponent<StateSpawned>();
 
         stateLazerWarning = gameObject.AddComponent<StateLazerWarning>();
-
+    
         stateLazerWarning.maxDis = lazerSize.y;
         stateLazerWarning.warnPos = attackPos;
         stateLazerWarning.warningDur = warningDur;
@@ -68,13 +68,20 @@ public class LazerTurret : Turret
         stateSpawned.OperateEnter();
     }
 
-    public override void Shoot()
+    public override void WarningAndShoot()
     {
         stateLazerWarning.warnDir = warnDir;
+        lifetime = StartCoroutine(ShootLazer());
+    }
+
+    public override void Shoot()
+    {
         stateLazerAttack.lazerRotation = lazerRotation;
         stateLazerAttack.lazerSize = lazerSize;
 
-        lifetime = StartCoroutine(ShootLazer());
+        stateLazerAttack.OperateEnter();
+        stateLazerAttack.lazer.LazerLifetime = lazerLifetime;
+        stateLazerAttack.lazer.transform.parent = transform;
     }
 
     private IEnumerator ShootLazer()
@@ -82,6 +89,9 @@ public class LazerTurret : Turret
         stateLazerWarning.OperateEnter();
 
         yield return attackWait;
+
+        stateLazerAttack.lazerRotation = lazerRotation;
+        stateLazerAttack.lazerSize = lazerSize;
 
         stateLazerAttack.OperateEnter();
         stateLazerAttack.lazer.LazerLifetime = lazerLifetime;
@@ -114,7 +124,7 @@ public class LazerTurret : Turret
 
                 warnDir = Vector3.down;
                 lazerRotation = new Vector3(0f, 0f, -180f);
-                transform.DORotate(new Vector3(0f, 0f, 0f), moveDur);
+                transform.DORotate(new Vector3(0f, 0f, 0f), 0.3f);
                 currentDir = direction;
                 move_X = true;
                 break;
@@ -123,7 +133,7 @@ public class LazerTurret : Turret
 
                 warnDir = Vector3.up;
                 lazerRotation = new Vector3(0f, 0f, 0f);
-                transform.DORotate(new Vector3(0f, 0f, -180f), moveDur);
+                transform.DORotate(new Vector3(0f, 0f, -180f), 0.3f);
                 currentDir = direction;
                 move_X = true;
                 break;
@@ -132,7 +142,7 @@ public class LazerTurret : Turret
 
                 warnDir = Vector3.left;
                 lazerRotation = new Vector3(0f, 0f, 90f);
-                transform.DORotate(new Vector3(0f, 0f, -90f), moveDur);
+                transform.DORotate(new Vector3(0f, 0f, -90f), 0.3f);
                 currentDir = direction;
                 move_X = false;
                 break;
@@ -141,7 +151,7 @@ public class LazerTurret : Turret
 
                 warnDir = Vector3.right;
                 lazerRotation = new Vector3(0f, 0f, -90f);
-                transform.DORotate(new Vector3(0f, 0f, 90f), moveDur);
+                transform.DORotate(new Vector3(0f, 0f, 90f), 0.3f);
                 currentDir = direction;
                 move_X = false;
                 break;

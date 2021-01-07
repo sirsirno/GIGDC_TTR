@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fd4e31e3bf9414f9f024eb3182806a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 2000
+  MaxHp: 500
   playerAttack:
     serializedVersion: 2
     m_Bits: 2048
@@ -146,7 +146,7 @@ MonoBehaviour:
     attackDir: 0
   - pos: {x: 5, y: 8, z: 0}
     attackDir: 0
-  phaseTwo_MovSpeed: 4.5
+  phaseTwo_MovSpeed: 2
 --- !u!61 &2866626596198938408
 BoxCollider2D:
   m_ObjectHideFlags: 0

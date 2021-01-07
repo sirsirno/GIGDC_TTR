@@ -67,5 +67,7 @@ public class Lazer : Shootable
     private void OnDisable()
     {
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        lazerLifetime = 1f;
+        lazerSize = new Vector2(0.45f, 5f);
     }
 }

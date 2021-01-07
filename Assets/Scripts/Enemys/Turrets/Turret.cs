@@ -9,6 +9,7 @@ public abstract class Turret : MonoBehaviour
     public AttackDir currentDir;
 
     public abstract void OnSpawned();
+    public abstract void WarningAndShoot();
     public abstract void Shoot();
     public abstract void OnDie();
     protected abstract void InsertQueue();

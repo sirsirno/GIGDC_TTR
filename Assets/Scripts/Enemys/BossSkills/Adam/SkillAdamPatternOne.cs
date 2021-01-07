@@ -52,7 +52,7 @@ public class SkillAdamPatternOne : BossSkill
 
         foreach (Turret turret in turrets)
         {
-            turret.Shoot();
+            turret.WarningAndShoot();
         }
     }
 }

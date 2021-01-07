@@ -4387,7 +4387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &139013580
 Transform:
   m_ObjectHideFlags: 0
@@ -4435,7 +4435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &140230604
 Transform:
   m_ObjectHideFlags: 0
@@ -6963,13 +6963,12 @@ MonoBehaviour:
     waveInfo: 1
   - enemytype: 0
     enemyCount:
-    - {x: 2, y: 8}
-    - {x: 6, y: 8}
+    - {x: 3, y: 8}
+    - {x: 5, y: 8}
     waveInfo: 2
   - enemytype: 0
     enemyCount:
-    - {x: 2, y: 8}
-    - {x: 6, y: 8}
+    - {x: 4, y: 8}
     waveInfo: 3
   - enemytype: 1
     enemyCount:
@@ -9087,7 +9086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &315238668
 Transform:
   m_ObjectHideFlags: 0
@@ -18206,7 +18205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &705178225
 Transform:
   m_ObjectHideFlags: 0
@@ -22824,7 +22823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &880120768
 Transform:
   m_ObjectHideFlags: 0
@@ -31331,6 +31330,7 @@ MonoBehaviour:
   - {fileID: 246735201}
   - {fileID: 1827454022}
   - {fileID: 1987741523}
+  - {fileID: 315238667}
   currentIdx: 0
 --- !u!4 &1313129782
 Transform:
