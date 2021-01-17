@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Tracker_Mk1_NormalEnemy : NormalEnemy
 {
@@ -27,6 +28,13 @@ public class Tracker_Mk1_NormalEnemy : NormalEnemy
     [SerializeField]
     private float damage;
 
+    [Header("터렛 프리팹")]
+    [SerializeField]
+    private GameObject turretPf;
+
+    [HideInInspector]
+    public Turret turret { get; set; }
+
     #region Awake Add Behaviour
     protected override void Awake()
     {
@@ -35,7 +43,9 @@ public class Tracker_Mk1_NormalEnemy : NormalEnemy
         SetAttackDir(attackDir);
 
         // 생성될 때
-        IState spawned = gameObject.AddComponent<StateSpawned>();
+        StateTrackerSpawned stateTrackerSpawned = gameObject.AddComponent<StateTrackerSpawned>();
+        stateTrackerSpawned.turretPf = turretPf;
+        IState spawned = stateTrackerSpawned;
 
         // 이동 추가
         StateRandomXMove stateRandomMove = gameObject.AddComponent<StateRandomXMove>();
@@ -71,6 +81,41 @@ public class Tracker_Mk1_NormalEnemy : NormalEnemy
     }
     #endregion
 
+    protected override IEnumerator StateManagement()
+    {
+        yield return null;
+        stateMachine.SetDefaultState(dicState[NormalEnemyState.SPAWNED]);
+
+        while (true)
+        {
+            if (stateMachine.CurrentState.Equals(dicState[NormalEnemyState.SPAWNED]))
+            {
+                yield return stateWait;
+                stateMachine.SetState(dicState[NormalEnemyState.MOVE]);
+                turret.transform.DOMoveY(EventManager.Instance.GetPlayerPositionY(), stateDur);
+            }
+            else if (stateMachine.CurrentState.Equals(dicState[NormalEnemyState.MOVE]))
+            {
+                yield return stateWait;
+                stateMachine.SetState(dicState[NormalEnemyState.WARNING]);
+                turret.WarningAndShoot();
+            }
+            else if (stateMachine.CurrentState.Equals(dicState[NormalEnemyState.WARNING]))
+            {
+                yield return attackWait;
+                stateMachine.SetState(dicState[NormalEnemyState.ATTACK]);
+            }
+            else if (stateMachine.CurrentState.Equals(dicState[NormalEnemyState.ATTACK]))
+            {
+                yield return stateWait;
+                stateMachine.SetState(dicState[NormalEnemyState.MOVE]);
+                turret.transform.DOMoveY(EventManager.Instance.GetPlayerPositionY(), stateDur);
+            }
+
+            yield return null;
+        }
+    }
+
     public override void SetAttackDir(AttackDir direction)
     {
         switch (direction)
@@ -101,8 +146,17 @@ public class Tracker_Mk1_NormalEnemy : NormalEnemy
         }
     }
 
+    protected override IEnumerator OnDie()
+    {
+        turret.StopLifetime();
+        yield return dieWait;
+        InsertQueue();
+    }
+
     protected override void InsertQueue()
     {
-        PoolManager.Instance.InsertQueue(this.gameObject, PoolManager.EnemyType.OBSERVERXMK1);
+        Destroy(turret.gameObject);
+        turret = null;
+        PoolManager.Instance.InsertQueue(this.gameObject, PoolManager.EnemyType.TRACKERMK1);
     }
 }

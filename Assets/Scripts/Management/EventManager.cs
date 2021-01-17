@@ -49,6 +49,9 @@ public class EventManager : MonoBehaviour
     public delegate void HealEnemy(float heal);
     public event HealEnemy OnHealEnemy;
 
+    public delegate float GetFloat();
+    public event GetFloat GetPlayerY;
+
     public void BattleStart()
     {
         if (OnBattleStart != null)
@@ -71,6 +74,17 @@ public class EventManager : MonoBehaviour
         {
             OnHealEnemy.Invoke(heal);
         }
+    }
+
+    public float GetPlayerPositionY()
+    {
+        if (GetPlayerY != null)
+        {
+            float val = GetPlayerY.Invoke();
+            return val;
+        }
+
+        return 0f;
     }
 
     public void ClearAllBullet()

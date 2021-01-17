@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(Move());
+        EventManager.Instance.GetPlayerY += GivePlayerY;
     }
 
     void Update()
@@ -116,8 +117,14 @@ public class PlayerMove : MonoBehaviour
         return false;
     }
 
+    private float GivePlayerY()
+    {
+        return Mathf.Round(transform.position.y);
+    }
+
     private void OnDisable()
     {
-
+        if(EventManager.Instance != null)
+            EventManager.Instance.GetPlayerY -= GivePlayerY;
     }
 }

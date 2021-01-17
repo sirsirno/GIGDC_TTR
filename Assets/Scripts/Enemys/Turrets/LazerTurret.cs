@@ -104,6 +104,12 @@ public class LazerTurret : Turret
         StopCoroutine(lifetime);
     }
 
+    public override void StopLifetime()
+    {
+        StopCoroutine(lifetime);
+        stateDie.OperateEnter();
+    }
+
     private IEnumerator Die()
     {
         stateDie.OperateEnter();

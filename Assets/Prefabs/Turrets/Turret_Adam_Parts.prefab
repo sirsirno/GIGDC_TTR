@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7263525042292002342}
   - component: {fileID: 7263525042292002339}
   m_Layer: 9
-  m_Name: Turret_Lazer
+  m_Name: Turret_Adam_Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 6
   m_Sprite: {fileID: -3767693892501896004, guid: 646cd4f8f2b96164fb488ca6fcb394ac,
     type: 3}
-  m_Color: {r: 0.427451, g: 0.42958623, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

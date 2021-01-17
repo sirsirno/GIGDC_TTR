@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: c01006fbc6a30e841bddd921020ddaca, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -152,9 +152,11 @@ MonoBehaviour:
   attackDur: 1
   lazerSize: {x: 0.45, y: 8}
   attackDir: 0
-  attackPos: {fileID: 0}
+  attackPos: {fileID: 8479577478428073686}
   warningDur: 0.5
   damage: 20
+  turretPf: {fileID: 6490792629505428118, guid: 6e8175d6326b91648acbd06e9cb45cd9,
+    type: 3}
 --- !u!1 &3646642119571524521
 GameObject:
   m_ObjectHideFlags: 0

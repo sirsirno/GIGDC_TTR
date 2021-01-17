@@ -7111,7 +7111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyInfo:
-  - enemytype: 0
+  - enemytype: 3
     enemyCount:
     - {x: 4, y: 8}
     waveInfo: 1
@@ -21814,6 +21814,9 @@ MonoBehaviour:
   enemy_ObserverY_Mk2_Right: {fileID: 1343680832521236397, guid: b45cae4b52c7d044090d98f0f02511d6,
     type: 3}
   enemy_ObserverY_Mk2_Right_Length: 10
+  enemy_Tracker_Mk1: {fileID: 2335711716564302853, guid: 28c2816e55f6fce45baaa2d9b34db330,
+    type: 3}
+  enemy_Tracker_Mk1_Length: 10
   boss_Adam: {fileID: 6296918009967424405, guid: d20bd2c766e90664c980a7c48fafe590,
     type: 3}
   boss_Adam_Length: 1
@@ -34857,7 +34860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -27.49997, y: 20}
+  m_AnchoredPosition: {x: -27.50003, y: 20}
   m_SizeDelta: {x: -455, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410577170

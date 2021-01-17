@@ -42,6 +42,7 @@ public class PoolManager : MonoBehaviour
         OBSERVERXMK1,
         OBSERVERYMK2_LEFT,
         OBSERVERYMK2_RIGHT,
+        TRACKERMK1,
         BOSSADAM
     }
 
@@ -104,7 +105,14 @@ public class PoolManager : MonoBehaviour
     private Queue<GameObject> enemy_ObserverY_Mk2_Right_Pool = new Queue<GameObject>();
     [SerializeField]
     private int enemy_ObserverY_Mk2_Right_Length;
-    
+
+    [Header("추적자 Mk.1 풀 정보")]
+    [SerializeField]
+    private GameObject enemy_Tracker_Mk1;
+    private Queue<GameObject> enemy_Tracker_Mk1_Pool = new Queue<GameObject>();
+    [SerializeField]
+    private int enemy_Tracker_Mk1_Length;
+
     // 보스 적 정보
 
     [Header("적 아담 풀 정보")]
@@ -172,6 +180,13 @@ public class PoolManager : MonoBehaviour
             obj.SetActive(false);
         }
 
+        for (int i = 0; i < enemy_Tracker_Mk1_Length; i++) // 노말 추적자 적
+        {
+            GameObject obj = Instantiate(enemy_Tracker_Mk1, transform);
+            enemy_Tracker_Mk1_Pool.Enqueue(obj);
+            obj.SetActive(false);
+        }
+
         for (int i = 0; i < boss_Adam_Length; i++) // 보스 아담
         {
             GameObject obj = Instantiate(boss_Adam, transform);
@@ -232,6 +247,11 @@ public class PoolManager : MonoBehaviour
 
             case EnemyType.OBSERVERYMK2_RIGHT:
                 enemy_ObserverY_Mk2_Right_Pool.Enqueue(obj);
+                obj.SetActive(false);
+                break;
+
+            case EnemyType.TRACKERMK1:
+                enemy_Tracker_Mk1_Pool.Enqueue(obj);
                 obj.SetActive(false);
                 break;
 
@@ -311,6 +331,11 @@ public class PoolManager : MonoBehaviour
 
             case EnemyType.OBSERVERYMK2_RIGHT:
                 obj = enemy_ObserverY_Mk2_Right_Pool.Dequeue();
+                obj.SetActive(true);
+                return obj;
+
+            case EnemyType.TRACKERMK1:
+                obj = enemy_Tracker_Mk1_Pool.Dequeue();
                 obj.SetActive(true);
                 return obj;
 
