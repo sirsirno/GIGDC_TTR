@@ -28,7 +28,8 @@ public class PoolManager : MonoBehaviour
     public enum BulletType
     {
         LAZER,
-        BEAM
+        BEAM,
+        FOLLOW
     }
 
     public enum LazerType
@@ -66,6 +67,14 @@ public class PoolManager : MonoBehaviour
     private Queue<GameObject> bullet_Beam_Pool = new Queue<GameObject>();
     [SerializeField]
     private int bullet_Beam_Length;
+
+    [Header("추적 총알 풀 정보")]
+    [SerializeField]
+    private GameObject bullet_Follow;
+    private Queue<GameObject> bullet_Follow_Pool = new Queue<GameObject>();
+    [SerializeField]
+    private int bullet_Fowwlow_Length;
+    
 
     // 레이저 정보
 
@@ -134,6 +143,7 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
+        
         if (instance == null)
         {
             instance = this;
@@ -156,6 +166,13 @@ public class PoolManager : MonoBehaviour
         {
             GameObject obj = Instantiate(bullet_Beam, transform);
             bullet_Beam_Pool.Enqueue(obj);
+            obj.SetActive(false);
+        }
+        
+        for (int i = 0; i < bullet_Beam_Length; i++) // 추적 총알
+        {
+            GameObject obj = Instantiate(bullet_Follow, transform);
+            bullet_Follow_Pool.Enqueue(obj);
             obj.SetActive(false);
         }
 
@@ -227,6 +244,11 @@ public class PoolManager : MonoBehaviour
 
             case BulletType.BEAM:
                 bullet_Beam_Pool.Enqueue(obj);
+                obj.SetActive(false);
+                break;
+
+            case BulletType.FOLLOW:
+                bullet_Follow_Pool.Enqueue(obj);
                 obj.SetActive(false);
                 break;
         }
@@ -306,6 +328,11 @@ public class PoolManager : MonoBehaviour
 
             case BulletType.BEAM:
                 obj = bullet_Beam_Pool.Dequeue();
+                obj.SetActive(true);
+                return obj;
+
+            case BulletType.FOLLOW:
+                obj = bullet_Follow_Pool.Dequeue();
                 obj.SetActive(true);
                 return obj;
         }
