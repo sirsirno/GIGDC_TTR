@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerDamaged : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected Slider slider = null;
+    [SerializeField]
+    private Image hpImage = null;
     private bool is_Damaged;
     private Shootable shootable;
 
@@ -21,17 +22,14 @@ public class PlayerDamaged : MonoBehaviour, IDamageable
 
     void Start()
     {
+        hpImage.fillAmount = 1;
         sprRend = GetComponent<SpriteRenderer>();
         damageWait = new WaitForSeconds(damageableDur);
         colorWait = new WaitForSeconds(0.1f);
-        slider.value = (float)GameManager.Instance.playerInfo.currentHp / (float)GameManager.Instance.playerInfo.maxHp;
         StartCoroutine(DamagedControl());
         StartCoroutine(OnDamaged());
     }
-    void HandleHP()
-    {
-        slider.value = (float)GameManager.Instance.playerInfo.currentHp / (float)GameManager.Instance.playerInfo.maxHp;
-    }
+    
 
     IEnumerator DamagedControl()
     {
@@ -66,7 +64,7 @@ public class PlayerDamaged : MonoBehaviour, IDamageable
         GameManager.Instance.playerInfo.currentHp -= damage;
         is_Damaged = true;
         print("플레이어 현재 체력 : " + GameManager.Instance.playerInfo.currentHp);
-        HandleHP();
+        hpImage.fillAmount = GameManager.Instance.playerInfo.currentHp * 0.01f ;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
